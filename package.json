@@ -1,0 +1,17 @@
+{
+  "name": "x-science-bot-node",
+  "version": "1.0.0",
+  "description": "Vercel-deployable X/Twitter science bot (Node.js)",
+  "main": "api/science_bot.js",
+  "scripts": {
+    "start": "node api/science_bot.js"
+  },
+  "dependencies": {
+    "twitter-api-v2": "^1.17.0",
+    "node-fetch": "^2.6.7"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}
