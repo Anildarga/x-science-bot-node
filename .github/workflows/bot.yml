@@ -1,0 +1,33 @@
+name: Daily Science Bot
+
+on:
+  schedule:
+    - cron: "30 12 * * *"   # Runs every day at 12:30 UTC (6PM IST)
+  workflow_dispatch:        # Allow manual run
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Bot
+        env:
+          TW_API_KEY: ${{ secrets.TW_API_KEY }}
+          TW_API_SECRET: ${{ secrets.TW_API_SECRET }}
+          TW_ACCESS_TOKEN: ${{ secrets.TW_ACCESS_TOKEN }}
+          TW_ACCESS_SECRET: ${{ secrets.TW_ACCESS_SECRET }}
+          UNSPLASH_KEY: ${{ secrets.UNSPLASH_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
+        run: node api/science_bot.js
